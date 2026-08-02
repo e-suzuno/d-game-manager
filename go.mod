@@ -6,7 +6,7 @@ require (
 	github.com/sergeymakinen/go-ico v1.0.0
 	github.com/tc-hib/winres v0.3.1
 	github.com/wailsapp/wails/v2 v2.13.0
-	modernc.org/sqlite v1.54.0
+	modernc.org/sqlite v1.55.0
 )
 
 require (
