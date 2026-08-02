@@ -1,0 +1,19 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "d-game-manager",
+  "outputfilename": "d-game-manager",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "e-suzuno"
+  },
+  "info": {
+    "companyName": "e-suzuno",
+    "productName": "d-game-manager",
+    "productVersion": "0.1.0",
+    "copyright": "Copyright © 2026 e-suzuno",
+    "comments": "購入した個人開発ゲームをローカルで管理するデスクトップアプリ"
+  }
+}

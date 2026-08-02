@@ -1,0 +1,62 @@
+.tag-chip {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag-chip__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tag-chip--drawer {
+  font-size: 13px;
+  padding: 6px 12px;
+  gap: 8px;
+  max-width: none;
+}
+
+.tag-chip__remove {
+  cursor: pointer;
+  opacity: 0.55;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.tag-chip__remove:hover {
+  opacity: 1;
+}
+
+.tag-chip--more {
+  flex: 0 0 auto;
+  color: var(--tag-more-text);
+  background: var(--tag-more-bg);
+}
+
+.tag-chip--dashed {
+  padding: 3px 11px;
+  color: var(--tag-dashed-text);
+  background: transparent;
+  border: 1px dashed var(--tag-dashed-border);
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.tag-row {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  min-width: 0;
+  overflow: hidden;
+}

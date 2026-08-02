@@ -1,0 +1,34 @@
+.tool-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #3f4656;
+  background: #eceff3;
+  border: 1px solid #dde2ea;
+  padding: 3px 9px;
+  border-radius: 8px;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.tool-badge--unknown {
+  color: #9a7b45;
+  background: #fbf5ea;
+  border: 1px dashed #e6d2a8;
+}
+
+/* 取り込みレビューカード用の小サイズ（dc.html の import card バッジ値） */
+.tool-badge--sm {
+  gap: 4px;
+  font-size: 11px;
+  padding: 2px 8px;
+}
+
+.tool-badge__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

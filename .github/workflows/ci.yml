@@ -1,0 +1,99 @@
+name: CI
+
+# PR とmainへの取り込みで走る軽量チェック。
+# 重い Windows ビルド（NSIS 込み）は build-windows.yml が v* タグ時に担当する。
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# 読むだけのチェックなので GITHUB_TOKEN は読み取りに絞る
+# （リリース資材を作る build-windows.yml 側だけが書き込み権限を持つ）。
+permissions:
+  contents: read
+
+# 同じブランチへ続けて push したとき、古い実行を捨てて最新だけを走らせる。
+# main の履歴は各コミットの結果を残したいので PR のときだけキャンセルする。
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  frontend:
+    name: Frontend build & typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Build (tsc + vite)
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+
+  frontend-test:
+    name: Frontend component tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm ci
+      # Storybook stories を Vitest のブラウザモードで実行するため chromium が要る。
+      # `chromium` の指定で headless shell も一緒に入る。--with-deps は runner に
+      # 足りない共有ライブラリを apt で補う。
+      - name: Install Playwright chromium
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+      # Storybook stories（play 関数）と src/lib の *.test.ts をまとめて実行する。
+      # ビルド・型チェックとは失敗の読み方が違うので frontend ジョブとは分ける。
+      - name: Test (vitest)
+        working-directory: frontend
+        run: npm test
+
+  go:
+    name: Go build & tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+      - name: Check gofmt
+        run: |
+          unformatted=$(gofmt -l .)
+          if [ -n "$unformatted" ]; then
+            echo "gofmt が未整形のファイルがあります:"
+            echo "$unformatted"
+            echo "ローカルで gofmt -w <file> を実行してください。"
+            exit 1
+          fi
+      # main.go の `//go:embed all:frontend/dist` は dist が無いとビルド自体が通らない。
+      # フロントの実ビルドは frontend ジョブが担当し、Go のテストは埋め込んだ中身を
+      # 参照しないので、ここは空のスタブで足りる（npm ci の二重実行を避ける）。
+      - name: Stub embedded frontend assets
+        run: |
+          mkdir -p frontend/dist
+          touch frontend/dist/index.html
+      - name: go vet
+        run: go vet ./...
+      # ルートパッケージ（app.go / app_test.go）まで含めて実行する。ここには
+      # TestResetLibraryNeverTouchesGameFolders のような「ゲーム本体のフォルダに触らない」
+      # 不変条件の回帰テストがあり、PR で緑を確認できないと意味がない（Issue #15）。
+      # wails の Linux GUI 依存（gtk / webkit2gtk）はランタイム側だけの要件で、
+      # ビルドとテストは追加パッケージなしで通る。
+      - name: Test all packages
+        run: go test ./...
+
+# docs/ の OKF 適合性 lint はこのリポジトリに実体を置いていないため CI では走らせない。
+# 検証はローカルからの任意実行（docs/docs-policy.md の「検証」）。

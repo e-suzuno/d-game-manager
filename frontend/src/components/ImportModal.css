@@ -1,0 +1,350 @@
+.import-scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim-modal);
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.import-modal {
+  /* position は誤クローズ確認オーバーレイ（.import-close-confirm）の基準 */
+  position: relative;
+  width: var(--modal-width);
+  max-height: 84%;
+  background: var(--bg-nav);
+  border-radius: 18px;
+  box-shadow: var(--shadow-modal);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: popIn 0.24s ease;
+}
+
+.import-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.import-modal__title {
+  font-weight: 800;
+  font-size: 17px;
+}
+
+.import-modal__close {
+  cursor: pointer;
+  color: var(--text-weak);
+  font-size: 18px;
+}
+
+.import-modal__drop-wrap {
+  padding: 26px;
+}
+
+.import-modal__dropzone {
+  /* Wails の OS ファイルドロップを受け付ける印（main.go の DragAndDrop 設定とセット） */
+  --wails-drop-target: drop;
+  border: 2px dashed var(--check-off);
+  border-radius: 14px;
+  padding: 44px 20px;
+  text-align: center;
+  cursor: pointer;
+  background: var(--bg-panel);
+  transition: all 0.15s;
+}
+
+.import-modal__dropzone:hover,
+.import-modal__dropzone.wails-drop-target-active {
+  border-color: var(--accent);
+  background: #f6f5ff;
+}
+
+.import-modal__drop-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+}
+
+.import-modal__drop-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 16px;
+}
+
+.import-modal__drop-or {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.import-modal__choose {
+  margin-top: 12px;
+  background: var(--dark-btn);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 22px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.import-modal__drop-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 18px;
+  line-height: 1.6;
+}
+
+.import-modal__mono {
+  font-family: var(--font-mono);
+}
+
+.import-modal__scanning {
+  padding: 64px 26px;
+  text-align: center;
+}
+
+.import-modal__spinner {
+  width: 46px;
+  height: 46px;
+  border: 4px solid #e6e2da;
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.import-modal__progress {
+  width: 320px;
+  max-width: 100%;
+  height: 8px;
+  margin: 19px auto;
+  border-radius: 4px;
+  background: #e6e2da;
+  overflow: hidden;
+}
+
+.import-modal__progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--accent);
+  transition: width 0.2s ease;
+}
+
+.import-modal__scanning-title {
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 22px;
+}
+
+.import-modal__scanning-note {
+  font-size: 12px;
+  color: var(--text-weak);
+  margin-top: 8px;
+  font-family: var(--font-mono);
+}
+
+.import-modal__review {
+  padding: 20px 22px;
+  overflow-y: auto;
+}
+
+.import-modal__review-note {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin-bottom: 14px;
+}
+
+.import-modal__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.import-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  border: 1px solid #e6e2da;
+  background: var(--bg-nav);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.import-card--checked {
+  border-color: #c7c2f0;
+  background: #f6f5ff;
+}
+
+.import-card__box {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--check-off);
+  background: var(--bg-panel);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.import-card__box--checked {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.import-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.import-card__title {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.import-card__path {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.import-card__tool {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.import-card__tool-note {
+  font-size: 11px;
+  color: #9a7b45;
+}
+
+.import-modal__footer {
+  padding: 15px 22px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.import-modal__cancel {
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  border: 1px solid #e2ded6;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.import-modal__confirm {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.import-modal__confirm:hover {
+  background: var(--accent-hover);
+}
+
+.import-modal__confirm:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* scanning / review 中の誤クローズ確認（モーダル内オーバーレイ） */
+.import-close-confirm {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.15s ease;
+}
+
+.import-close-confirm__box {
+  background: var(--bg-nav);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-modal);
+  padding: 22px 26px;
+  max-width: 380px;
+  text-align: center;
+}
+
+.import-close-confirm__title {
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.import-close-confirm__note {
+  font-size: 12px;
+  color: var(--text-weak);
+  margin-top: 8px;
+}
+
+.import-close-confirm__actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.import-close-confirm__close {
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.import-close-confirm__close:hover {
+  background: var(--danger-hover);
+}

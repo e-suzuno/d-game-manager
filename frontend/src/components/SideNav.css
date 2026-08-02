@@ -1,0 +1,340 @@
+.side-nav {
+  width: var(--nav-width);
+  flex-shrink: 0;
+  background: var(--bg-nav);
+  border-right: 1px solid var(--border);
+  padding: 54px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.side-nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  margin-bottom: 22px;
+}
+
+.side-nav__logo-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.side-nav__logo-title {
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+}
+
+.side-nav__logo-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.side-nav__section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  padding: 0 11px;
+  margin: 6px 0 8px;
+}
+
+/* 「タグで絞り込み」見出し行（左に見出し、右に「管理」リンク） */
+.side-nav__tags-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 11px;
+  margin: 22px 0 8px;
+}
+
+.side-nav__section-title--tags {
+  padding: 0;
+  margin: 0;
+}
+
+.side-nav__manage {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-weak);
+  cursor: pointer;
+}
+
+.side-nav__manage:hover {
+  color: var(--accent);
+}
+
+/* 制作ツールセクションの見出し＝アコーディオンヘッダー（既定折りたたみ） */
+.side-nav__section-title--tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 7px 11px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.side-nav__section-title--tools:hover {
+  background: #f0eee8;
+}
+
+.side-nav__caret--tools {
+  width: 10px;
+}
+
+.side-nav__tools-label {
+  flex: 1;
+}
+
+/* 選択中ツール件数のバッジ（accent 紫・白文字） */
+.side-nav__tools-badge {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0 6px;
+  line-height: 15px;
+}
+
+.side-nav__section-note {
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #c3bfb6;
+}
+
+.side-nav__tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 7px 11px 0;
+}
+
+/* 制作ツール属性フィルタのピル（SideNav とツールバーのフィルタで共用） */
+.tool-pill {
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #4b5563;
+  background: #eef1f4;
+  border: 1px solid #e0e4ea;
+  box-sizing: border-box;
+}
+
+.tool-pill--on {
+  color: #fff;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.tool-pill--unknown {
+  color: #9a7b45;
+  background: #fbf5ea;
+  border: 1px dashed #e6d2a8;
+}
+
+.tool-pill--unknown-on {
+  color: #fff;
+  background: #b08442;
+  border: 1px solid #b08442;
+}
+
+.side-nav__views {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.side-nav__view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 11px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+}
+
+.side-nav__view--active {
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--accent-soft);
+}
+
+.side-nav__view-count {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.side-nav__view--active .side-nav__view-count {
+  color: var(--accent);
+}
+
+/* 見つからないゲームのビュー（該当0件では描画されない）。件数は警告色で示す */
+.side-nav__view--missing .side-nav__view-count {
+  color: #9f1239;
+  font-weight: 700;
+}
+
+.side-nav__view--missing.side-nav__view--active {
+  background: #ffe4e6;
+  color: #7c2434;
+}
+
+.side-nav__view--missing.side-nav__view--active .side-nav__view-count {
+  color: #9f1239;
+}
+
+.side-nav__groups {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.side-nav__group-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.side-nav__caret {
+  width: 12px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.side-nav__group-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.side-nav__tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px 5px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.side-nav__tag--active {
+  background: var(--accent-soft);
+  color: var(--text-primary);
+}
+
+.side-nav__tag-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+/* タグフィルタ用チェックボックス（SideNav とツールバーのフィルタで共用） */
+.tag-checkbox {
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border: 1.5px solid var(--check-off);
+  background: var(--bg-panel);
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.tag-checkbox--on {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.side-nav__tag-count {
+  font-size: 11px;
+  color: var(--text-count);
+  font-family: var(--font-mono);
+}
+
+.side-nav__footer {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.side-nav__settings {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--text-tertiary);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 13px;
+  border: 1px solid #e2ded6;
+  border-radius: 11px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.side-nav__settings:hover {
+  background: #f0eee8;
+}
+
+.side-nav__import {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--dark-btn);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  border-radius: 11px;
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.side-nav__import:hover {
+  background: var(--accent);
+}

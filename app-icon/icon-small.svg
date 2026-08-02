@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!--
+    32px 以下向けの簡略版。端子ピンとグリップ溝は潰れて濁るだけなので落とし、
+    シルエットとラベルの ◈ だけを 1.1 倍に拡大して残す。
+  -->
+  <defs>
+    <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5d55ee"/>
+      <stop offset="1" stop-color="#3f37c9"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1024" height="1024" rx="232" ry="232" fill="url(#plate)"/>
+
+  <g transform="translate(512 512) scale(1.1) translate(-512 -512)">
+    <path d="M 384 200 h 256 a 48 48 0 0 1 48 48 v 44 h 36 a 48 48 0 0 1 48 48
+             v 432 a 48 48 0 0 1 -48 48 h -424 a 48 48 0 0 1 -48 -48 v -432
+             a 48 48 0 0 1 48 -48 h 36 v -44 a 48 48 0 0 1 48 -48 Z" fill="#ffffff"/>
+    <rect x="316" y="378" width="392" height="290" rx="34" ry="34" fill="#4f46e5"/>
+    <path d="M 512 428 L 604 523 L 512 618 L 420 523 Z" fill="#ffffff"/>
+  </g>
+</svg>

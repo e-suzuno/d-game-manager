@@ -1,0 +1,29 @@
+/* 実体が見つからないゲームのバッジ。色はタグパレットの rose（types.ts）に合わせる */
+.missing-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #9f1239;
+  background: #ffe4e6;
+  border: 1px solid #fbcfd5;
+  padding: 2px 8px;
+  border-radius: 8px;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* カバー画像に重ねる版（ギャラリーのカード） */
+.missing-badge--overlay {
+  color: #fff;
+  background: rgba(159, 18, 57, 0.92);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.missing-badge__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

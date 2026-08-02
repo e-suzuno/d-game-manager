@@ -1,0 +1,160 @@
+.gallery {
+  padding: 22px 26px;
+}
+
+.gallery__group-header {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 6px 0 14px;
+}
+
+.gallery__group-label {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.gallery__group-count {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.gallery__group-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.gallery__section + .gallery__section {
+  margin-top: 18px;
+}
+
+.gallery-grid {
+  display: grid;
+  /* 内容の min-content で列幅が不揃いにならないよう 0 を明示（5列を強制均等化） */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.gallery-card {
+  cursor: pointer;
+}
+
+.gallery-card__cover {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.16s, box-shadow 0.16s;
+  /* グリフ（既定カバー時のみ表示）の中央寄せ。absolute な shade / ☆ / タイトルには影響しない */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-card:hover .gallery-card__cover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px -12px rgba(0, 0, 0, 0.4);
+}
+
+/* 淡色カバー上のタイトル可読性のため白グラデ（グリフより上・タイトルより下に重なる） */
+.gallery-card__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(255, 255, 255, 0.92));
+}
+
+.gallery-card__glyph {
+  display: flex;
+  color: rgba(52, 58, 78, 0.22);
+}
+
+/* カバー左上の制作ツール属性オーバーレイ（☆は右上のまま） */
+.gallery-card__tool {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(15, 18, 26, 0.55);
+  backdrop-filter: blur(4px);
+  padding: 3px 8px;
+  border-radius: 7px;
+  /* 長名ツールが右上の☆と重ならないよう幅を制限（プロトタイプにはない防御） */
+  max-width: calc(100% - 52px);
+  box-sizing: border-box;
+}
+
+.gallery-card__tool-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 制作ツールバッジ（top:8px・高さ約21px）の真下に置く */
+.gallery-card__missing {
+  position: absolute;
+  top: 34px;
+  left: 8px;
+  max-width: calc(100% - 16px);
+}
+
+.gallery-card__fav {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.55);
+  /* 淡色カバー上でも視認できる暗ピル（v2 プロトタイプ値） */
+  background: rgba(15, 18, 26, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.gallery-card__fav--on {
+  color: var(--fav-on);
+}
+
+.gallery-card__title {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 9px;
+  font-weight: 700;
+  font-size: 13px;
+  color: #1c1b19;
+  line-height: 1.25;
+}
+
+.gallery-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 7px;
+  /* タグ有無でカード全高がズレないよう固定 */
+  min-height: 24px;
+  color: var(--text-weak);
+}
+
+.gallery-card__meta .tag-row {
+  min-width: 0;
+}
+
+.gallery-card__size {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  margin-left: auto;
+  flex: 0 0 auto;
+}

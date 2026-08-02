@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5d55ee"/>
+      <stop offset="1" stop-color="#3f37c9"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".18"/>
+      <stop offset=".55" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景プレート（角丸 22.7%） -->
+  <rect x="0" y="0" width="1024" height="1024" rx="232" ry="232" fill="url(#plate)"/>
+  <rect x="0" y="0" width="1024" height="1024" rx="232" ry="232" fill="url(#sheen)"/>
+
+  <!-- カートリッジ本体: 上段の細い段＝端子、下段の広い段＝本体 -->
+  <path d="M 384 200 h 256 a 48 48 0 0 1 48 48 v 44 h 36 a 48 48 0 0 1 48 48
+           v 432 a 48 48 0 0 1 -48 48 h -424 a 48 48 0 0 1 -48 -48 v -432
+           a 48 48 0 0 1 48 -48 h 36 v -44 a 48 48 0 0 1 48 -48 Z" fill="#ffffff"/>
+
+  <!-- 端子ピン -->
+  <g fill="#4f46e5" opacity=".26">
+    <rect x="400" y="228" width="34" height="60" rx="14" ry="14"/>
+    <rect x="476" y="228" width="34" height="60" rx="14" ry="14"/>
+    <rect x="552" y="228" width="34" height="60" rx="14" ry="14"/>
+    <rect x="628" y="228" width="34" height="60" rx="14" ry="14"/>
+  </g>
+
+  <!-- ラベル ＋ ◈ -->
+  <rect x="316" y="372" width="392" height="236" rx="30" ry="30" fill="#4f46e5" opacity=".92"/>
+  <path d="M 512 404 L 588 490 L 512 576 L 436 490 Z" fill="#ffffff"/>
+
+  <!-- グリップ溝 -->
+  <g fill="#4f46e5" opacity=".26">
+    <rect x="352" y="664" width="320" height="30" rx="15" ry="15"/>
+    <rect x="352" y="718" width="320" height="30" rx="15" ry="15"/>
+  </g>
+</svg>

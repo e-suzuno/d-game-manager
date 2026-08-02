@@ -1,0 +1,322 @@
+/* タグ管理モーダル。骨格は SettingsModal と同一パターン（scrim z-index 70 / popIn / 角丸 18px）。
+   削除確認まわりの赤系はダンジャートークン（固定値）を SettingsModal と同様に直書きする */
+
+.tag-mgr-scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim-modal);
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.tag-mgr {
+  width: 560px;
+  max-height: 86%;
+  background: var(--bg-nav);
+  border-radius: 18px;
+  box-shadow: var(--shadow-modal);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: popIn 0.24s ease;
+}
+
+.tag-mgr__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px 14px;
+  flex-shrink: 0;
+}
+
+.tag-mgr__title {
+  font-weight: 800;
+  font-size: 17px;
+}
+
+.tag-mgr__subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.tag-mgr__close {
+  cursor: pointer;
+  color: var(--text-weak);
+  font-size: 18px;
+}
+
+.tag-mgr__tabs-wrap {
+  padding: 0 22px 14px;
+  flex-shrink: 0;
+}
+
+/* セグメントコントロール（#efece6 背景に白ピル） */
+.tag-mgr__tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--surface-2);
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.tag-mgr__tab {
+  flex: 1;
+  text-align: center;
+  padding: 8px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-weak);
+}
+
+.tag-mgr__tab--active {
+  font-weight: 700;
+  color: var(--text-primary);
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.tag-mgr__tab-count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: 5px;
+}
+
+.tag-mgr__list {
+  padding: 2px 14px 6px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.tag-mgr__row {
+  position: relative;
+  padding: 9px 8px;
+  border-radius: 10px;
+}
+
+.tag-mgr__row:hover {
+  background: var(--surface-1);
+}
+
+.tag-mgr__row-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 色ドット。背景色と外周リングはタグの現在色からインラインで与える */
+.tag-mgr__dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 5px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.tag-mgr__label {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tag-mgr__count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-count);
+  flex-shrink: 0;
+}
+
+.tag-mgr__icon-btn {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-weak);
+  cursor: pointer;
+}
+
+.tag-mgr__icon-btn:hover {
+  background: var(--border);
+  color: var(--text-primary);
+}
+
+.tag-mgr__icon-btn--convert:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.tag-mgr__icon-btn--delete {
+  color: var(--text-faint);
+}
+
+.tag-mgr__icon-btn--delete:hover {
+  background: #fbe3e0;
+  color: #c0392b;
+}
+
+.tag-mgr__rename-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-panel);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.tag-mgr__rename-ok {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+.tag-mgr__rename-ok:hover {
+  background: var(--accent-hover);
+}
+
+.tag-mgr__rename-cancel {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0eee8;
+  color: var(--text-weak);
+  cursor: pointer;
+}
+
+.tag-mgr__swatches {
+  margin: 10px 0 4px 28px;
+  display: flex;
+  gap: 9px;
+}
+
+.tag-mgr__swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tag-mgr__swatch--active {
+  box-shadow: 0 0 0 2px var(--text-primary), 0 0 0 3px #fff;
+}
+
+.tag-mgr__delete-confirm {
+  margin: 10px 0 2px 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tag-mgr__delete-note {
+  font-size: 12.5px;
+  color: #7a6f6c;
+}
+
+.tag-mgr__delete-do {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fff;
+  background: #c0392b;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.tag-mgr__delete-cancel {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: #f0eee8;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.tag-mgr__empty {
+  padding: 26px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.tag-mgr__foot {
+  padding: 14px 22px 18px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.tag-mgr__new-row {
+  display: flex;
+  gap: 8px;
+}
+
+.tag-mgr__new-input {
+  flex: 1;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  padding: 10px 12px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.tag-mgr__add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  border-radius: 9px;
+  padding: 0 16px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 13.5px;
+  background: var(--dark-btn);
+  color: #fff;
+  cursor: pointer;
+}
+
+.tag-mgr__add:disabled {
+  background: #e2ded6;
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.tag-mgr__new-hint {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 9px;
+  line-height: 1.55;
+}

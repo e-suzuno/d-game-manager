@@ -1,0 +1,177 @@
+.game-table__row {
+  display: grid;
+  /* [カバー] タイトル | 制作ツール | タグ | 保存先 | サイズ | 追加日 | 操作（調整版ハンドオフ 変更点3） */
+  grid-template-columns: 40px minmax(150px, 1fr) 118px minmax(160px, 1.3fr) minmax(150px, 1fr) 74px 86px 60px;
+  align-items: center;
+}
+
+.game-table__header {
+  padding: 11px 26px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg-app);
+  z-index: 2;
+}
+
+.game-table__right {
+  text-align: right;
+}
+
+.game-table__group-header {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 26px 8px;
+  position: sticky;
+  top: 37px;
+  background: var(--bg-app);
+  z-index: 1;
+}
+
+.game-table__group-label {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.game-table__group-count {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.game-table__group-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.game-table__data {
+  padding: 8px 26px;
+  border-bottom: 1px solid var(--border-soft);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.game-table__data:hover {
+  background: var(--bg-panel);
+}
+
+.game-table__cover {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 7px;
+  box-shadow: var(--shadow-card);
+  /* グリフ（既定カバー時のみ表示）の中央寄せ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(56, 62, 82, 0.32);
+}
+
+.game-table__title-cell {
+  min-width: 0;
+  padding-right: 12px;
+}
+
+.game-table__title {
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* exe 名と「見つかりません」バッジを1行に並べる（バッジが無いときは見た目が変わらない） */
+.game-table__sub {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.game-table__exe {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.game-table__tool {
+  min-width: 0;
+  padding-right: 8px;
+}
+
+.game-table__tags {
+  min-width: 0;
+  padding-right: 10px;
+}
+
+.game-table__folder {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  color: var(--text-weak);
+}
+
+.game-table__folder-path {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.game-table__size {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.game-table__date {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.game-table__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.game-table__fav,
+.game-table__launch {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.game-table__fav {
+  color: var(--fav-off);
+}
+
+.game-table__fav--on {
+  color: var(--fav-on);
+}
+
+.game-table__launch {
+  color: var(--text-weak);
+  background: #f2efe9;
+  border: 1px solid #e6e2da;
+}

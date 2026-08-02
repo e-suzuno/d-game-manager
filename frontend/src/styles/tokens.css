@@ -1,0 +1,78 @@
+/* デザイントークン — docs/reference/design-tokens.md の値を CSS 変数化 */
+:root {
+  /* 背景・面 */
+  --bg-app: #f6f5f2;
+  --bg-nav: #fbfaf8;
+  --bg-panel: #ffffff;
+  --surface-1: #f4f2ee;
+  --surface-2: #efece6;
+  --surface-3: #eceae4;
+
+  /* 罫線 */
+  --border: #e8e5df;
+  --border-strong: #e0ddd6;
+  --border-soft: #efece6;
+  --border-faint: #f0ede7;
+
+  /* 文字 */
+  --text-primary: #1c1b19;
+  --text-secondary: #57534e;
+  --text-tertiary: #6b6862;
+  --text-weak: #8a867e;
+  --text-muted: #a8a49c;
+  --text-faint: #b0aca3;
+  --text-count: #b8b4ab;
+
+  /* アクセント */
+  --accent: #4f46e5;
+  --accent-hover: #4038c9;
+  --accent-soft: #eceafe;
+
+  /* タグ（axis 別） */
+  --tag-genre-text: #1e40af;
+  --tag-genre-bg: #dbeafe;
+  --axis-genre: #2563eb;
+  --tag-tool-text: #0f766e;
+  --tag-tool-bg: #ccfbf1;
+  --axis-tool: #0d9488;
+  --tag-other-text: #57534e;
+  --tag-other-bg: #eceae4;
+  --axis-other: #8a867e;
+  --tag-more-text: #8a867e;
+  --tag-more-bg: #e6e3dc;
+  --tag-dashed-text: #b0aca3;
+  --tag-dashed-border: #d4cfc6;
+
+  /* 危険操作（削除） */
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --danger-soft: #fee2e2;
+
+  /* お気に入り */
+  --fav-on: #f59e0b;
+  --fav-off: #cbc6bd;
+
+  /* チェックドット OFF 枠 */
+  --check-off: #cbc6bd;
+
+  /* ダークボタン */
+  --dark-btn: #1c1b19;
+
+  /* 暗幕 */
+  --scrim-drawer: rgba(20, 18, 15, 0.28);
+  --scrim-modal: rgba(20, 18, 15, 0.42);
+
+  /* 影 */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-drawer: -24px 0 60px -24px rgba(0, 0, 0, 0.35);
+  --shadow-modal: 0 40px 100px -30px rgba(0, 0, 0, 0.6);
+
+  /* フォント */
+  --font-ui: 'Manrope Variable', 'Noto Sans JP Variable', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', monospace;
+
+  /* レイアウト */
+  --nav-width: 246px;
+  --drawer-width: 400px;
+  --modal-width: 560px;
+}

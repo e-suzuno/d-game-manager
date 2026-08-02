@@ -1,0 +1,61 @@
+{
+  "language": "ja",
+  "permissions": {
+    "additionalDirectories": [
+      "./*"
+    ],
+    "ask": [
+      "Write(~/.bashrc)",
+      "Bash(rm *)"
+    ],
+    "allow": [
+      "Skill(git-setup)",
+      "Bash(node --version:*)",
+      "Bash(npm --version:*)",
+      "Bash(touch *)",
+      "Bash(ls:*)",
+      "Bash(cd:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx eslint:*)",
+      "Bash(npx vitest:*)",
+      "Bash(npx docusaurus:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run test:run:*)",
+      "Bash(npm run start:*)",
+      "Bash(npm run serve:*)",
+      "Bash(gh --version)",
+      "Bash(gh pr:*)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git branch *)",
+      "Bash(git checkout *)",
+      "Bash(git status *)",
+      "Bash(git log *)",
+      "Bash(git diff *)",
+      "Bash(git fetch *)",
+      "Bash(git push*:!*main*)",
+      "Bash(mkdir -p *)",
+      "Bash(npx msw:*)",
+      "Bash(npx playwright:*)",
+      "Bash(npm create vite@latest:*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -c \"import sys,json;print(json.load(sys.stdin).get('tool_input',{}).get('file_path',''))\" | { read -r f; case \"$f\" in *.go) gofmt -w \"$f\";; esac; } 2>/dev/null || true",
+            "statusMessage": "gofmt を実行中"
+          }
+        ]
+      }
+    ]
+  }
+}

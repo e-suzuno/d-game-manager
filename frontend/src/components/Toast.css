@@ -1,0 +1,22 @@
+.toast {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 80;
+  background: var(--dark-btn);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 12px;
+  padding: 11px 18px;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.5);
+  animation: popIn 0.2s ease;
+  max-width: 80%;
+  /* 取り込み結果は複数メッセージを改行で連結して出すため、省略せず折り返す。
+     ただし画面を覆わないよう高さに上限を設ける（超過分はスクロール） */
+  white-space: pre-line;
+  overflow-wrap: break-word;
+  max-height: 40vh;
+  overflow-y: auto;
+}

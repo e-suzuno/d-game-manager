@@ -1,0 +1,57 @@
+version: 2
+
+# 依存の更新 PR を週次で受ける。個人開発で手が回る量に収めたいので
+# 上限を絞り、まとめて上げても壊れにくいものはグループ化して1本の PR にする。
+updates:
+  - package-ecosystem: gomod
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
+    commit-message:
+      # Conventional Commits に合わせる（CLAUDE.md の git 運用）
+      prefix: chore
+    groups:
+      go-dependencies:
+        patterns: ['*']
+
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: chore
+    groups:
+      # Storybook は本体とアドオンのバージョンを揃える必要があるため必ず一括で上げる
+      storybook:
+        patterns:
+          - storybook
+          - '@storybook/*'
+          - '@chromatic-com/storybook'
+      # テスト実行系も vitest / browser provider / playwright が連動する
+      test-tooling:
+        patterns:
+          - vitest
+          - '@vitest/*'
+          - playwright
+      react:
+        patterns:
+          - react
+          - react-dom
+          - '@types/react'
+          - '@types/react-dom'
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: ci
+    groups:
+      actions:
+        patterns: ['*']

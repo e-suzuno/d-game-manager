@@ -1,0 +1,52 @@
+build/bin
+node_modules
+frontend/dist
+
+# git worktree（並列開発用。/feature-start が .claude/worktrees/ に作成）
+.claude/worktrees/
+
+tmp/
+
+*storybook.log
+storybook-static
+
+# Wails / Go のビルド副産物
+# package.json.md5 は wails が frontend:install の再実行判定に使うローカル状態。
+# frontend/wailsjs/ は生成物だが CI の tsc が参照するため追跡し続ける（ignore しない）。
+frontend/package.json.md5
+# 素の `go build` がリポジトリ直下に吐くバイナリ（wails build の出力は build/bin）
+/d-game-manager
+*.test
+*.out
+__debug_bin*
+
+# フロントのテスト副産物
+frontend/coverage/
+test-results/
+playwright-report/
+blob-report/
+
+# Python スクリプト（scripts/okf-lint.py, design/app-icon/generate.py）を直接実行したとき
+__pycache__/
+*.pyc
+
+# アプリのデータ（正規の保存先は os.UserConfigDir() 配下。ここは事故時の保険）
+library.db
+library.db-shm
+library.db-wal
+
+# 秘密情報
+.env
+.env.local
+.env*.local
+
+# 個人ごとのローカル設定（共有する .claude/settings.json とは別物）
+.claude/settings.local.json
+.vscode/
+.idea/
+*.swp
+
+# OS が作るゴミ
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,580 @@
+.drawer-scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim-drawer);
+  z-index: 55;
+  animation: fadeIn 0.2s ease;
+}
+
+.drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--drawer-width);
+  background: var(--bg-panel);
+  border-left: 1px solid #e2ded6;
+  box-shadow: var(--shadow-drawer);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  animation: slideInRight 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.drawer__banner {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  flex-shrink: 0;
+  /* グリフ（既定カバー時のみ表示）の中央寄せ。absolute なボタン群・タイトルには影響しない */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 淡色カバー上のタイトル可読性のため白グラデ（グリフより上・タイトルより下に重なる） */
+.drawer__banner-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 42%, rgba(255, 255, 255, 0.88));
+}
+
+.drawer__banner-glyph {
+  display: flex;
+  color: rgba(52, 58, 78, 0.2);
+}
+
+.drawer__cover-actions {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.drawer__cover-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.drawer__cover-btn:hover {
+  background: rgba(0, 0, 0, 0.62);
+}
+
+.drawer__cover-btn--reset {
+  justify-content: center;
+  width: 32px;
+  padding: 0;
+  font-size: 15px;
+}
+
+.drawer__title-row {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 16px;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.drawer__title-pencil {
+  flex-shrink: 0;
+  opacity: 0.75;
+  margin-bottom: 5px;
+  color: #57534e;
+  display: flex;
+}
+
+.drawer__title-edit {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 16px;
+  display: flex;
+  gap: 7px;
+}
+
+.drawer__title-edit input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.97);
+  border: none;
+  border-radius: 9px;
+  padding: 9px 12px;
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text-primary);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.drawer__title-save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  border-radius: 9px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.drawer__title-save:hover {
+  background: var(--accent-hover);
+}
+
+.drawer__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.drawer__title {
+  font-size: 23px;
+  font-weight: 800;
+  color: #1c1b19;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.drawer__body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* 実体が見つからないゲームの警告バナー。色は MissingBadge と同じ rose 系 */
+.drawer__missing {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #fff1f2;
+  border: 1px solid #fbcfd5;
+  border-radius: 10px;
+  /* body の gap（22px）だと起動ボタンから離れすぎるので詰める */
+  margin-bottom: -8px;
+}
+
+.drawer__missing-icon {
+  color: #9f1239;
+  display: flex;
+  padding-top: 1px;
+}
+
+.drawer__missing-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: #9f1239;
+}
+
+.drawer__missing-note {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: #7c2434;
+}
+
+/* 警告バナー内の復帰導線。危険な操作ではないので削除ボタンとは色を分ける */
+.drawer__relink {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 10px;
+  background: var(--bg-panel);
+  color: #9f1239;
+  border: 1px solid #f0aeb8;
+  border-radius: 9px;
+  padding: 7px 12px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.drawer__relink:hover {
+  background: #fff7f8;
+}
+
+.drawer__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.drawer__launch {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 11px;
+  padding: 13px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.drawer__launch:hover {
+  background: var(--accent-hover);
+}
+
+.drawer__folder {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--surface-1);
+  color: var(--text-primary);
+  border: 1px solid #e2ded6;
+  border-radius: 11px;
+  padding: 0 16px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.drawer__folder:hover {
+  background: #ece9e3;
+}
+
+.drawer__section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.drawer__section-title--info {
+  margin-bottom: 6px;
+}
+
+/* 制作ツール属性ブロック（現在値行 + ドロップダウン） */
+.drawer__tool {
+  position: relative;
+}
+
+.drawer__tool-current {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border: 1px solid #e2ded6;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #faf9f6;
+}
+
+.drawer__tool-current:hover {
+  background: var(--surface-1);
+}
+
+/* 現在値は未判別でも中立スタイル（破線にしない。調整版ハンドオフ 変更点3） */
+.drawer__tool-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #3f4656;
+}
+
+.drawer__tool-change {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.drawer__tool-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background: var(--bg-panel);
+  border: 1px solid #e6e2da;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.3);
+  padding: 6px;
+  max-height: 260px;
+  overflow-y: auto;
+  animation: popIn 0.16s ease;
+}
+
+.drawer__tool-opt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.drawer__tool-opt--active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.drawer__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 11px;
+}
+
+.drawer__tag-wrap {
+  position: relative;
+}
+
+.drawer__no-tags {
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.color-picker {
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 0;
+  z-index: 5;
+  background: var(--bg-panel);
+  border: 1px solid #e6e2da;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.35);
+  padding: 12px;
+  animation: popIn 0.16s ease;
+}
+
+.color-picker__title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 9px;
+  white-space: nowrap;
+}
+
+.color-picker__swatches {
+  display: grid;
+  grid-template-columns: repeat(5, 24px);
+  gap: 9px;
+}
+
+.color-picker__swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.color-picker__swatch--active {
+  box-shadow: 0 0 0 2px var(--text-primary), 0 0 0 3px #fff;
+}
+
+.drawer__tag-input {
+  width: 100%;
+  background: var(--bg-app);
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  padding: 9px 12px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-primary);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.drawer__create {
+  margin-top: 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.drawer__suggest {
+  margin-top: 12px;
+}
+
+.drawer__suggest-title {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.drawer__suggest-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.drawer__suggest-chip {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 20px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  background: #f0eee8;
+  border: 1px solid #e4e0d8;
+}
+
+.drawer__suggest-chip:hover {
+  background: #e6e3dc;
+}
+
+.drawer__info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border-faint);
+  font-size: 13px;
+}
+
+.drawer__info-row--block {
+  display: block;
+}
+
+.drawer__info-row--last {
+  border-bottom: none;
+}
+
+.drawer__info-label {
+  color: var(--text-weak);
+}
+
+.drawer__info-row--block .drawer__info-label {
+  margin-bottom: 4px;
+}
+
+.drawer__info-value {
+  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.drawer__info-path {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  word-break: break-all;
+  color: var(--accent);
+}
+
+.drawer__danger {
+  border-top: 1px solid var(--border-faint);
+  padding-top: 18px;
+}
+
+.drawer__delete {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  padding: 8px 14px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--danger);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.drawer__delete:hover {
+  background: var(--danger-soft);
+  border-color: var(--danger);
+}
+
+.drawer__delete-confirm {
+  background: var(--danger-soft);
+  border: 1px solid var(--danger);
+  border-radius: 11px;
+  padding: 14px;
+  animation: popIn 0.16s ease;
+}
+
+.drawer__delete-note {
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.drawer__delete-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.drawer__delete-cancel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  padding: 7px 14px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.drawer__delete-cancel:hover {
+  background: var(--surface-1);
+}
+
+.drawer__delete-do {
+  background: var(--danger);
+  border: none;
+  border-radius: 9px;
+  padding: 7px 14px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.drawer__delete-do:hover {
+  background: var(--danger-hover);
+}
+
+.drawer__delete-cancel:disabled,
+.drawer__delete-do:disabled {
+  cursor: default;
+  opacity: 0.6;
+}

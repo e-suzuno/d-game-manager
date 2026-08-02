@@ -1,0 +1,104 @@
+Copyright (c) 2026 e-suzuno
+
+All rights reserved.
+
+## 位置づけ
+
+本件成果物（このリポジトリのソースコード・ドキュメント・デザイン資材、および
+GitHub Releases で配布するビルド済みバイナリをいう。以下同じ）は、著作権者が
+個人の学習を目的として開発しているものです。オープンソースライセンスの下で
+提供されているものではありません。
+
+## 許諾する行為
+
+著作権者は、以下の行為を許諾します。
+
+- ビルド済みバイナリを、個人的な利用を目的としてダウンロードし、実行すること
+- 本件成果物を閲覧し、学習を目的として複製（クローン）し、手元で改変して試すこと
+
+## 許諾しない行為
+
+上記以外の行為、とくに次の行為を、著作権者の書面による事前の許諾なく行うことを
+禁じます。
+
+- 本件成果物およびその改変物の再配布・公衆送信
+- 本件成果物およびその改変物の販売・貸与
+
+なお、本件成果物を GitHub 上で公開していることに伴い、GitHub 利用規約が定める
+範囲での閲覧およびフォークを妨げるものではありません。
+
+## 無保証および免責
+
+本件成果物は現状のまま提供され、商品性、特定目的への適合性および権利非侵害の
+保証を含め、明示黙示を問わずいかなる保証も伴いません。
+
+本件成果物は、利用者が指定したフォルダを走査し、利用者が指定した実行ファイルを
+起動します。その使用または使用不能から生じるいかなる損害（データの消失および
+起動した実行ファイルに起因する損害を含みますが、これらに限りません）についても、
+著作権者は責任を負いません。利用者ご自身の責任においてご利用ください。
+
+## 第三者ソフトウェア
+
+本件成果物には第三者のソフトウェアおよびフォントが含まれます。それぞれの
+ライセンスと著作権表示は THIRD_PARTY_NOTICES.md に記載しています。本ライセンスは
+これら第三者の成果物には適用されません。
+
+## 連絡先
+
+利用条件について確認が必要な場合は、このリポジトリの Issue で著作権者に連絡して
+ください。
+
+---
+
+Copyright (c) 2026 e-suzuno. All rights reserved.
+
+## Status
+
+This software, together with its documentation, design assets, and the
+pre-built binaries distributed via GitHub Releases (collectively, the
+"Work"), is developed by the copyright holder for personal learning purposes.
+It is not open source software.
+
+## Permitted uses
+
+The copyright holder grants permission to:
+
+- download and run the pre-built binaries for personal use;
+- view the Work, and copy (clone) and locally modify it for the purpose of
+  study.
+
+## Uses not permitted
+
+Any other use is prohibited without the prior written consent of the copyright
+holder, in particular:
+
+- redistributing or publicly transmitting the Work or any modified version of
+  it;
+- selling or lending the Work or any modified version of it.
+
+Nothing in this license restricts viewing and forking on GitHub to the extent
+permitted by the GitHub Terms of Service.
+
+## Disclaimer of warranty and liability
+
+THE WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+The Work scans folders chosen by the user and launches executables chosen by
+the user. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM,
+DAMAGES, OR OTHER LIABILITY (INCLUDING BUT NOT LIMITED TO LOSS OF DATA AND
+DAMAGES CAUSED BY LAUNCHED EXECUTABLES) ARISING FROM, OUT OF, OR IN CONNECTION
+WITH THE WORK OR THE USE OR OTHER DEALINGS IN THE WORK. Use it at your own
+risk.
+
+## Third-party software
+
+The Work includes third-party software and fonts. Their licenses and copyright
+notices are listed in THIRD_PARTY_NOTICES.md. This license does not apply to
+those third-party works.
+
+## Contact
+
+If you need to clarify the terms of use, please contact the copyright holder
+via an Issue in this repository.
