@@ -5,8 +5,8 @@ go 1.25.0
 require (
 	github.com/sergeymakinen/go-ico v1.0.0
 	github.com/tc-hib/winres v0.3.1
-	github.com/wailsapp/wails/v2 v2.14.0
-	modernc.org/sqlite v1.56.0
+	github.com/wailsapp/wails/v2 v2.15.0
+	modernc.org/sqlite v1.57.0
 )
 
 require (
